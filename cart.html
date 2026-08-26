@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart | Ruchi Bites</title>
+<meta name="description" content="Review your Ruchi Bites cart before checkout.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥟</text></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header id="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand"><span class="logo-mark">🥟</span> Ruchi Bites</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-btn" aria-label="Cart">🛒<span class="cart-count">0</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main>
+  <section class="page-hero" style="padding-bottom:20px;">
+    <div class="container">
+      <span class="eyebrow">🛒 Step 1 of 2</span>
+      <h1>Your Cart</h1>
+    </div>
+  </section>
+
+  <section style="padding-top:20px;">
+    <div class="container" id="cartContainer"></div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none; margin-top:0;">
+      <span>© <span class="footer-year"></span> Ruchi Bites. All rights reserved.</span>
+      <span><a href="privacy.html" style="color:#e8d5c4;">Privacy</a> · <a href="refund.html" style="color:#e8d5c4;">Refunds</a> · <a href="terms.html" style="color:#e8d5c4;">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site-config.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  const cartContainer = document.getElementById("cartContainer");
+
+  function renderCart(){
+    const lines = Cart.lines();
+    if (lines.length === 0){
+      cartContainer.innerHTML = `
+        <div class="empty-state reveal in-view">
+          <div class="big-emoji">🧺</div>
+          <h2>Your cart is empty</h2>
+          <p>Looks like you haven't added any snacks yet.</p>
+          <a href="shop.html" class="btn btn-primary">Browse Snacks →</a>
+        </div>`;
+      return;
+    }
+
+    const sub = Cart.subtotal(), ship = Cart.shipping(), total = Cart.total();
+    cartContainer.innerHTML = `
+      <div class="cart-layout">
+        <div>
+          ${lines.map(l => `
+            <div class="cart-item" data-id="${l.id}" data-variant="${l.variant}">
+              <div class="thumb">${l.product.emoji}</div>
+              <div class="info">
+                <h4>${l.product.name}</h4>
+                <div class="meta">${l.variant} · ${formatINR(l.price)} each</div>
+                <a class="remove-link" data-remove href="#">Remove</a>
+              </div>
+              <div class="qty-control">
+                <button type="button" data-dec aria-label="Decrease">−</button>
+                <span data-qty>${l.qty}</span>
+                <button type="button" data-inc aria-label="Increase">+</button>
+              </div>
+              <div class="line-price">${formatINR(l.lineTotal)}</div>
+            </div>`).join("")}
+        </div>
+        <div class="summary-card reveal in-view">
+          <h3 style="font-family:var(--ff-display);font-size:18px;margin-bottom:16px;">Order Summary</h3>
+          <div class="summary-row"><span>Subtotal</span><span>${formatINR(sub)}</span></div>
+          <div class="summary-row"><span>Shipping</span><span>${ship === 0 ? "FREE" : formatINR(ship)}</span></div>
+          ${ship > 0 ? `<p style="font-size:12px;color:var(--ink-500);margin-top:-4px;">Add ${formatINR(SITE.freeShippingAbove - sub)} more for free shipping</p>` : ""}
+          <div class="summary-row total"><span>Total</span><span>${formatINR(total)}</span></div>
+          <a href="checkout.html" class="btn btn-primary btn-block mt-40" style="margin-top:20px;">Proceed to Checkout →</a>
+          <a href="shop.html" class="btn btn-outline btn-block" style="margin-top:12px;">Continue Shopping</a>
+        </div>
+      </div>`;
+
+    cartContainer.querySelectorAll(".cart-item").forEach(item => {
+      const id = item.dataset.id, variant = item.dataset.variant;
+      const line = lines.find(l => l.id === id && l.variant === variant);
+      item.querySelector("[data-inc]").addEventListener("click", () => { Cart.setQty(id, variant, line.qty + 1); renderCart(); });
+      item.querySelector("[data-dec]").addEventListener("click", () => { Cart.setQty(id, variant, line.qty - 1); renderCart(); });
+      item.querySelector("[data-remove]").addEventListener("click", (e) => { e.preventDefault(); Cart.remove(id, variant); showToast("Item removed", "🗑️"); renderCart(); });
+    });
+  }
+
+  renderCart();
+</script>
+</body>
+</html>

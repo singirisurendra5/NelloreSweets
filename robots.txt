@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+Disallow: /cart.html
+Disallow: /checkout.html
+Disallow: /success.html
+Disallow: /api/
+
+Sitemap: https://www.ruchibites.com/sitemap.xml

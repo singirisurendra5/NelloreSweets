@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Order Confirmed | Ruchi Bites</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥟</text></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header id="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand"><span class="logo-mark">🥟</span> Ruchi Bites</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-btn" aria-label="Cart">🛒<span class="cart-count">0</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main>
+  <section style="padding-top:60px;">
+    <div class="container">
+      <div class="steps">
+        <div class="step done"><span class="dot">✓</span> Cart</div>
+        <div class="step-sep"></div>
+        <div class="step done"><span class="dot">✓</span> Shipping & Payment</div>
+        <div class="step-sep"></div>
+        <div class="step active"><span class="dot">✓</span> Confirmation</div>
+      </div>
+      <div class="success-box">
+        <div class="success-icon">✓</div>
+        <h1>Order Confirmed!</h1>
+        <p>Thank you for shopping with Ruchi Bites. We've sent your order details to your WhatsApp and email. Your snacks will be packed fresh and shipped within 24 hours.</p>
+        <div id="orderDetails"></div>
+        <div class="hero-cta text-center" style="justify-content:center;margin-top:28px;">
+          <a href="shop.html" class="btn btn-primary">Continue Shopping</a>
+          <a href="contact.html" class="btn btn-outline">Need Help?</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none; margin-top:0;">
+      <span>© <span class="footer-year"></span> Ruchi Bites. All rights reserved.</span>
+      <span><a href="privacy.html" style="color:#e8d5c4;">Privacy</a> · <a href="refund.html" style="color:#e8d5c4;">Refunds</a> · <a href="terms.html" style="color:#e8d5c4;">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site-config.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/main.js"></script>
+<script>
+  const raw = sessionStorage.getItem("ruchibites_last_order");
+  const box = document.getElementById("orderDetails");
+  if (raw){
+    const order = JSON.parse(raw);
+    box.innerHTML = `
+      <div class="order-summary-card">
+        <div class="summary-row"><span>Order / Payment ID</span><span>${order.paymentId}</span></div>
+        <div class="summary-row"><span>Shipping To</span><span>${order.shipping.fullName}, ${order.shipping.city}</span></div>
+        ${order.items.map(i => `<div class="summary-row"><span>${i.name} (${i.variant}) × ${i.qty}</span><span>₹${i.lineTotal}</span></div>`).join("")}
+        <div class="summary-row total"><span>Total Paid</span><span>₹${order.total}</span></div>
+      </div>`;
+  } else {
+    box.innerHTML = `<p style="margin-top:20px;">Order details aren't available in this session, but if your payment succeeded you'll receive confirmation on WhatsApp and email shortly.</p>`;
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout | Ruchi Bites</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🥟</text></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+</head>
+<body>
+
+<header id="site-header">
+  <div class="container nav-wrap">
+    <a href="index.html" class="brand"><span class="logo-mark">🥟</span> Ruchi Bites</a>
+    <nav class="nav-links" id="navLinks">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="contact.html">Contact</a>
+      <a href="refund.html">Refund Policy</a>
+      <a href="privacy.html">Privacy Policy</a>
+    </nav>
+    <div class="nav-actions">
+      <a href="cart.html" class="cart-btn" aria-label="Cart">🛒<span class="cart-count">0</span></a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+<div class="nav-scrim" id="navScrim"></div>
+
+<main>
+  <section class="page-hero" style="padding-bottom:0;">
+    <div class="container">
+      <h1>Checkout</h1>
+      <div class="steps">
+        <div class="step done"><span class="dot">✓</span> Cart</div>
+        <div class="step-sep"></div>
+        <div class="step active"><span class="dot">2</span> Shipping & Payment</div>
+        <div class="step-sep"></div>
+        <div class="step"><span class="dot">3</span> Confirmation</div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:10px;">
+    <div class="container">
+      <div id="emptyNotice" style="display:none;" class="empty-state">
+        <div class="big-emoji">🧺</div>
+        <h2>Your cart is empty</h2>
+        <p>Add some snacks before checking out.</p>
+        <a href="shop.html" class="btn btn-primary">Browse Snacks →</a>
+      </div>
+
+      <form id="checkoutForm" class="checkout-layout" novalidate>
+        <div class="card-box">
+          <h3>📦 Shipping Details</h3>
+          <div class="form-grid">
+            <div class="field" data-field="fullName">
+              <label for="fullName">Full Name *</label>
+              <input type="text" id="fullName" name="fullName" placeholder="e.g. Priya Sharma" required>
+              <span class="error">Please enter your full name</span>
+            </div>
+            <div class="field" data-field="phone">
+              <label for="phone">Phone Number *</label>
+              <input type="tel" id="phone" name="phone" placeholder="10-digit mobile number" maxlength="10" required>
+              <span class="error">Enter a valid 10-digit phone number</span>
+            </div>
+          </div>
+          <div class="field" data-field="email">
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+            <span class="error">Enter a valid email address</span>
+          </div>
+          <div class="field" data-field="address">
+            <label for="address">Full Address (House No, Street, Area) *</label>
+            <textarea id="address" name="address" rows="3" placeholder="Flat / House No., Street, Landmark" required></textarea>
+            <span class="error">Please enter your shipping address</span>
+          </div>
+          <div class="form-grid">
+            <div class="field" data-field="city">
+              <label for="city">City *</label>
+              <input type="text" id="city" name="city" placeholder="e.g. Hyderabad" required>
+              <span class="error">Please enter your city</span>
+            </div>
+            <div class="field" data-field="state">
+              <label for="state">State *</label>
+              <input type="text" id="state" name="state" placeholder="e.g. Telangana" required>
+              <span class="error">Please enter your state</span>
+            </div>
+          </div>
+          <div class="form-grid">
+            <div class="field" data-field="pincode">
+              <label for="pincode">Pincode *</label>
+              <input type="text" id="pincode" name="pincode" placeholder="6-digit pincode" maxlength="6" required>
+              <span class="error">Enter a valid 6-digit pincode</span>
+            </div>
+            <div class="field" data-field="notes">
+              <label for="notes">Delivery Notes (optional)</label>
+              <input type="text" id="notes" name="notes" placeholder="e.g. Leave with security">
+            </div>
+          </div>
+          <p style="font-size:12.5px;color:var(--ink-500);">🔒 Your details are used only to ship your order and are never shared with third parties. See our <a href="privacy.html" style="color:var(--brand-600);font-weight:600;">Privacy Policy</a>.</p>
+        </div>
+
+        <div>
+          <div class="card-box" id="orderSummaryBox">
+            <h3>🧾 Order Summary</h3>
+            <div id="checkoutLines"></div>
+            <div class="summary-row"><span>Subtotal</span><span id="sumSubtotal">₹0</span></div>
+            <div class="summary-row"><span>Shipping</span><span id="sumShipping">₹0</span></div>
+            <div class="summary-row total"><span>Total Payable</span><span id="sumTotal">₹0</span></div>
+            <button type="submit" class="btn btn-primary btn-block mt-40" id="payBtn" style="margin-top:20px;">
+              <span id="payBtnText">Pay Securely →</span>
+            </button>
+            <p style="font-size:11.5px;color:var(--ink-500);text-align:center;margin-top:12px;">Powered by Razorpay · UPI, Cards & Netbanking accepted</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-bottom" style="border-top:none; margin-top:0;">
+      <span>© <span class="footer-year"></span> Ruchi Bites. All rights reserved.</span>
+      <span><a href="privacy.html" style="color:#e8d5c4;">Privacy</a> · <a href="refund.html" style="color:#e8d5c4;">Refunds</a> · <a href="terms.html" style="color:#e8d5c4;">Terms</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/site-config.js"></script>
+<script src="assets/js/products.js"></script>
+<script src="assets/js/cart.js"></script>
+<script src="assets/js/main.js"></script>
+<script src="assets/js/checkout.js"></script>
+</body>
+</html>

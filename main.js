@@ -1,5 +1,5 @@
 /* =========================================================
-   Ruchi Bites — Shared UI behaviour (nav, scroll reveal, toast)
+   Nellore Sweets — Shared UI behaviour (nav, scroll reveal, toast)
    ========================================================= */
 
 /* ---------- Scroll reveal (shared observer, safe for dynamically-inserted content) ----------

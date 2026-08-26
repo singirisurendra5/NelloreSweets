@@ -1,5 +1,5 @@
 /* =========================================================
-   Ruchi Bites — Checkout & Razorpay Payment Flow
+   Nellore Sweets — Checkout & Razorpay Payment Flow
    1. Validate shipping form
    2. POST /api/create-order  -> get a Razorpay order id
    3. Open Razorpay Checkout popup
@@ -140,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const result = await verifyRes.json();
 
       if (verifyRes.ok && result.verified){
-        sessionStorage.setItem("ruchibites_last_order", JSON.stringify({
+        sessionStorage.setItem("nelloresweets_last_order", JSON.stringify({
           orderId: response.razorpay_order_id,
           paymentId: response.razorpay_payment_id,
           items: orderLines,

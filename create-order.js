@@ -18,7 +18,7 @@ module.exports = async (req, res) => {
       amount: amountPaise,
       currency: "INR",
       receipt: `rb_${Date.now()}`,
-      notes: { source: "ruchi-bites-website" }
+      notes: { source: "nellore-sweets-website" }
     });
 
     return res.status(200).json({

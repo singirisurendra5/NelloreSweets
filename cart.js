@@ -1,9 +1,9 @@
 /* =========================================================
-   Ruchi Bites — Cart (localStorage based, no backend needed)
+   Nellore Sweets — Cart (localStorage based, no backend needed)
    Cart shape: [{ id, variant, qty }]
    ========================================================= */
 
-const CART_KEY = "ruchibites_cart_v1";
+const CART_KEY = "nelloresweets_cart_v1";
 
 const Cart = {
   read(){

@@ -1,8 +1,8 @@
 {
-  "name": "ruchi-bites",
+  "name": "nellore-sweets",
   "version": "1.0.0",
   "private": true,
-  "description": "Ruchi Bites — homemade Telugu snacks online store (static site + Vercel serverless API for Razorpay payments and WhatsApp/email order notifications).",
+  "description": "Nellore Sweets — homemade Telugu snacks online store (static site + Vercel serverless API for Razorpay payments and WhatsApp/email order notifications).",
   "engines": { "node": ">=18" },
   "dependencies": {
     "razorpay": "^2.9.4",

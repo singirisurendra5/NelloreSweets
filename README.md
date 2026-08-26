@@ -1,10 +1,10 @@
-# Ruchi Bites — Your Snacks Website
+# Nellore Sweets — Your Snacks Website
 
 Congratulations! This is a complete, ready-to-launch online store for selling homemade snacks — built exactly the way you described: browse snacks, pick 250g/500g/1kg packs, add to cart, fill in shipping details, pay online (Razorpay), and automatically get a WhatsApp + email confirmation with the order and shipping details. It also includes separate Privacy Policy, Refund Policy, Terms, and Contact Us pages, and is set up to be found on Google (SEO).
 
 **This guide assumes zero coding experience.** Follow it top to bottom and your store will be live. Budget about 45–60 minutes for the first-time setup.
 
-> 📌 **Placeholder brand name:** Everything currently says "Ruchi Bites" — you told us you'd decide your real name later. See **Step 1** below for exactly where to change it.
+> 📌 **Placeholder brand name:** Everything currently says "Nellore Sweets" — you told us you'd decide your real name later. See **Step 1** below for exactly where to change it.
 
 ---
 
@@ -40,7 +40,7 @@ Open these files in any text editor (Notepad, or free tools like **VS Code** or 
    - `fssai` — your FSSAI food license number (**required by Indian law** to sell food online — apply at [fssai.gov.in](https://fssai.gov.in) if you don't have one yet; it's quick to get for a small home business)
    - `freeShippingAbove` / `shippingFee` — your delivery charges
 
-2. **Brand name & contact info also appear as plain text** in the header/footer of every `.html` page (this is intentional — it keeps the site fast with zero setup). The easiest way to change "Ruchi Bites" everywhere: use your editor's **Find & Replace All** across the whole folder, replacing `Ruchi Bites` with your real name, and replacing the sample phone/email/address the same way.
+2. **Brand name & contact info also appear as plain text** in the header/footer of every `.html` page (this is intentional — it keeps the site fast with zero setup). The easiest way to change "Nellore Sweets" everywhere: use your editor's **Find & Replace All** across the whole folder, replacing `Nellore Sweets` with your real name, and replacing the sample phone/email/address the same way.
 
 3. **Products & prices** — open `assets/js/products.js`. Each snack is one block:
    ```js
@@ -158,7 +158,7 @@ In Vercel → your Project → **Settings → Domains**, add your domain and fol
 - [ ] Twilio WhatsApp sender approved for production (Step 4) — or you're fine starting with the sandbox
 - [ ] Test order placed successfully end-to-end (cart → checkout → payment → WhatsApp/email received)
 - [ ] Custom domain connected (optional)
-- [ ] `sitemap.xml` and every page's `<link rel="canonical">` updated with your real domain (currently set to `https://www.ruchibites.com/` as a placeholder — find & replace this too)
+- [ ] `sitemap.xml` and every page's `<link rel="canonical">` updated with your real domain (currently set to `https://www.nelloresweets.com/` as a placeholder — find & replace this too)
 
 ---
 

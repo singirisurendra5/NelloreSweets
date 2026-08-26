@@ -12,7 +12,7 @@ const SITE = {
   // Razorpay PUBLIC key id (safe to expose in the browser). Get it from
   // Razorpay Dashboard → Settings → API Keys. Never put the KEY SECRET here —
   // that stays only in your Vercel environment variables (see /api).
-  razorpayKeyId: "rzp_test_TUGJ6PoA5tGwf7",
+  razorpayKeyId: "rzp_test_TUIB6xVV5Kmak1",
   phone: "+91 90000 00000",
   whatsapp: "919000000000", // country code + number, no + or spaces
   email: "hello@ruchibites.com",
